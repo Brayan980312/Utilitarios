@@ -12,12 +12,6 @@ Su propósito es **evitar duplicación de código** y promover **buenas práctic
 2. [Arquitectura y diseño](#-arquitectura-y-diseño)
 3. [Requisitos previos](#-requisitos-previos)
 4. [Instalación](#️-instalación)
-5. [Uso básico](#-uso-básico)
-6. [Ejemplos detallados](#-ejemplos-detallados)
-7. [Buenas prácticas y seguridad](#-buenas-prácticas-y-seguridad)
-8. [Contribución](#-contribución)
-9. [Futuras mejoras](#-futuras-mejoras)
-10. [Licencia](#-licencia)
 
 ---
 
