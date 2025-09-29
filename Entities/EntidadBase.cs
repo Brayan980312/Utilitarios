@@ -7,6 +7,11 @@
     public abstract class EntidadBase
     {
         /// <summary>
+        /// Identificador único de la entidad.
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="EntidadBase"/>.
         /// Se utiliza principalmente para permitir herencia en las entidades de negocio.
         /// </summary>
