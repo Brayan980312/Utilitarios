@@ -26,9 +26,7 @@
 
         #region Constructor
 
-        /// <summary>
-        /// Inicializa una nueva instancia del repositorio CRUD genérico.
-        /// </summary>
+        /// <summary>Inicializa una nueva instancia del repositorio CRUD genérico.</summary>
         /// <param name="contexto">Contexto de base de datos inyectado.</param>
         public CrudSqlRepositorio(DbContext contexto)
         {

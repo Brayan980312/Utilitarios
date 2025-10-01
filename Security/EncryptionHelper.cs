@@ -3,14 +3,18 @@
     using System.Security.Cryptography;
     using System.Text;
 
-    /// <summary>
-    /// Métodos de cifrado y descifrado simétrico con AES.
-    /// </summary>
+    /// <summary>Métodos de cifrado y descifrado simétrico con AES.</summary>
     public static class EncryptionHelper
     {
-        private static readonly byte[] Key = Encoding.UTF8.GetBytes("ki3tQu3ISNGMrt0RNvZjN6tD9itZR5mRvJN8N++fDzk="); 
-        private static readonly byte[] IV = Encoding.UTF8.GetBytes("8zEM3A+cNUmJY7XARlnOXQ==");  
+        // Clave de 256 bits (32 bytes), almacenada en Base64
+        private static readonly byte[] Key = Convert.FromBase64String("ki3tQu3ISNGMrt0RNvZjN6tD9itZR5mRvJN8N++fDzk=");
 
+        // Vector de inicialización (IV) de 128 bits (16 bytes), almacenado en Base64
+        private static readonly byte[] IV = Convert.FromBase64String("8zEM3A+cNUmJY7XARlnOXQ==");
+
+        /// <summary>Cifra un texto plano usando AES con clave y vector de inicialización predefinidos.</summary>
+        /// <param name="plainText">Texto plano a cifrar.</param>
+        /// <returns>Cadena en Base64 que representa el texto cifrado.</returns>
         public static string Encrypt(string plainText)
         {
             using var aes = Aes.Create();
@@ -24,6 +28,9 @@
             return Convert.ToBase64String(encrypted);
         }
 
+        /// <summary>Descifra un texto cifrado en Base64 usando AES con clave y vector de inicialización predefinidos.</summary>
+        /// <param name="cipherText">Texto cifrado en Base64.</param>
+        /// <returns>Texto plano descifrado.</returns>
         public static string Decrypt(string cipherText)
         {
             using var aes = Aes.Create();
