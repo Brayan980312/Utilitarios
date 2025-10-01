@@ -4,14 +4,10 @@
     using System.Linq.Expressions;
     using System.Reflection;
 
-    /// <summary>
-    /// Extensiones para construir expresiones de filtrado dinámico a partir de objetos de parámetros
-    /// </summary>
+    /// <summary>Extensiones para construir expresiones de filtrado dinámico a partir de objetos de parámetros</summary>
     public static class DynamicFilterExtensions
     {
-        /// <summary>
-        /// Convierte un objeto de parámetros en una expresión de filtro del tipo <see cref="Expression{Func{T, Boolean}}"/>.
-        /// </summary>
+        /// <summary>Convierte un objeto de parámetros en una expresión de filtro del tipo <see cref="Expression{Func{T, Boolean}}"/>.</summary>
         /// <typeparam name="T">Tipo de entidad a filtrar.</typeparam>
         /// <param name="parametros">Objeto con propiedades no nulas a usar como criterios.</param>
         /// <returns>Expresión lambda lista para ser usada en LINQ o EF.</returns>
