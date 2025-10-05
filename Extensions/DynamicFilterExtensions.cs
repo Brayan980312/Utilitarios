@@ -22,6 +22,10 @@
             // Iteramos todas las propiedades públicas del objeto recibido
             foreach (PropertyInfo prop in parametros.GetType().GetProperties())
             {
+                // Si la propiedad se llama "Id" (ignorar mayúsculas/minúsculas), se omite
+                if (string.Equals(prop.Name, "Id", StringComparison.OrdinalIgnoreCase))
+                    continue;
+
                 // Obtenemos el valor actual de la propiedad
                 var value = prop.GetValue(parametros);
 
