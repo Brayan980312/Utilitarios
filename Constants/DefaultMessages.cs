@@ -22,7 +22,7 @@
         public const string FieldRequired = "El campo es obligatorio.";
         public const string FieldRequiredWithName = "El campo '{0}' es obligatorio.";
         public const string InvalidFormat = "El formato del campo no es válido.";
-        public const string InvalidEmail = "El correo electrónico no es válido.";
+        public const string InvalidEmail = "El correo electrónico no tiene un formato valido.";
         public const string InvalidPhone = "El número de teléfono no es válido.";
         public const string InvalidNumber = "El valor debe ser numérico.";
         public const string InvalidDate = "La fecha no es válida.";
@@ -71,5 +71,13 @@
         public const string TryAgainLater = "Intente nuevamente más tarde.";
         public const string FeatureNotAvailable = "La funcionalidad aún no está disponible.";
         public const string InvalidOperation = "La operación solicitada no es válida.";
+
+        // ======================
+        // Personalizados
+        // ======================
+        public const string UserAlreadyExistsById = "Ya existe un usuario con la identificación ingresada.";
+        public const string UserAlreadyExistsByEmail = "Ya existe un usuario con el correo ingresado.";
+        public const string PasswordsDoNotMatch = "Las contraseñas no coinciden.";
+        public const string UserNotFound = "El usuario ingresado no existe.";
     }
 }
