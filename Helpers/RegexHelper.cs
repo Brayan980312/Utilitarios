@@ -101,13 +101,13 @@
         /// <item><description>Al menos una letra mayúscula.</description></item>
         /// <item><description>Al menos una letra minúscula.</description></item>
         /// <item><description>Al menos un número.</description></item>
-        /// <item><description>Al menos un carácter especial (@$!%*?&).</description></item>
+        /// <item><description>Al menos un carácter especial (~`!@#$%^&*()_\-+=\[\]{}|\\:;""'<>,.?/).</description></item>
         /// </list>
         /// </summary>
         /// <param name="input">Cadena que representa la contraseña.</param>
         /// <returns><c>true</c> si la contraseña es fuerte; de lo contrario, <c>false</c>.</returns>
         public static bool EsPasswordFuerte(string input) =>
-            Regex.IsMatch(input, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$");
+            Regex.IsMatch(input, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d~`!@#$%^&*()_\-+=\[\]{}|\\:;""'<>,.?/]{8,}$");
 
         #endregion
     }
