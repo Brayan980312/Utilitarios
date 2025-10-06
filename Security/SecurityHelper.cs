@@ -14,5 +14,15 @@
         {
             return _passwordHasher.HashPassword(null, password);
         }
+
+        /// <summary>Verifica si una contraseña coincide con el hash almacenado.</summary>
+        /// <param name="hashedPassword">Hash almacenado en la base de datos.</param>
+        /// <param name="providedPassword">Contraseña ingresada por el usuario.</param>
+        /// <returns>True si la contraseña es válida, False si no lo es.</returns>
+        public static bool VerifyPassword(string hashedPassword, string providedPassword)
+        {
+            var result = _passwordHasher.VerifyHashedPassword(null, hashedPassword, providedPassword);
+            return result == PasswordVerificationResult.Success;
+        }
     }
 }
