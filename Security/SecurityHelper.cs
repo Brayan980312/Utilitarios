@@ -2,23 +2,23 @@
 {
     using Microsoft.AspNetCore.Identity;
 
-    /// <summary>Métodos de hashing y verificación de contraseñas usando ASP.NET Identity.</summary>
+    /// <summary>Métodos de hashing y verificación de claves usando ASP.NET Identity.</summary>
     public static class SecurityHelper
     {
         private static readonly PasswordHasher<object> _passwordHasher = new();
 
-        /// <summary>Genera un hash seguro de la contraseña usando el algoritmo por defecto de <see cref="PasswordHasher{TUser}"/>.</summary>
-        /// <param name="password">Contraseña en texto plano.</param>
-        /// <returns>Hash de la contraseña en formato serializado listo para almacenar en la base de datos.</returns>
+        /// <summary>Genera un hash seguro de la claves usando el algoritmo por defecto de <see cref="PasswordHasher{TUser}"/>.</summary>
+        /// <param name="password">Clave en texto plano.</param>
+        /// <returns>Hash de la clave en formato serializado listo para almacenar en la base de datos.</returns>
         public static string HashPassword(string password)
         {
             return _passwordHasher.HashPassword(null, password);
         }
 
-        /// <summary>Verifica si una contraseña coincide con el hash almacenado.</summary>
+        /// <summary>Verifica si una clave coincide con el hash almacenado.</summary>
         /// <param name="hashedPassword">Hash almacenado en la base de datos.</param>
-        /// <param name="providedPassword">Contraseña ingresada por el usuario.</param>
-        /// <returns>True si la contraseña es válida, False si no lo es.</returns>
+        /// <param name="providedPassword">Clave ingresada por el usuario.</param>
+        /// <returns>True si la clave es válida, False si no lo es.</returns>
         public static bool VerifyPassword(string hashedPassword, string providedPassword)
         {
             var result = _passwordHasher.VerifyHashedPassword(null, hashedPassword, providedPassword);

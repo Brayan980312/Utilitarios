@@ -95,7 +95,7 @@
 
         #region Seguridad
 
-        /// <summary>Verifica si la cadena cumple con los criterios de una contraseña fuerte:
+        /// <summary>Verifica si la cadena cumple con los criterios de una clave fuerte:
         /// <list type="bullet">
         /// <item><description>Longitud mínima de 8 caracteres.</description></item>
         /// <item><description>Al menos una letra mayúscula.</description></item>
@@ -104,10 +104,11 @@
         /// <item><description>Al menos un carácter especial (~`!@#$%^&*()_\-+=\[\]{}|\\:;""'<>,.?/).</description></item>
         /// </list>
         /// </summary>
-        /// <param name="input">Cadena que representa la contraseña.</param>
-        /// <returns><c>true</c> si la contraseña es fuerte; de lo contrario, <c>false</c>.</returns>
+        /// <param name="input">Cadena que representa la clave.</param>
+        /// <returns><c>true</c> si la clave es fuerte; de lo contrario, <c>false</c>.</returns>
         public static bool EsPasswordFuerte(string input) =>
-            Regex.IsMatch(input, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d~`!@#$%^&*()_\-+=\[\]{}|\\:;""'<>,.?/]{8,}$");
+            Regex.IsMatch(input, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[~`!@#$%^&*()_\-+=\[\]{}|\\:;"",.<>?/]).{8,}$");
+
 
         #endregion
     }
