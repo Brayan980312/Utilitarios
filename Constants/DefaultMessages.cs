@@ -29,14 +29,14 @@
         public const string MinLength = "El campo '{0}' debe tener al menos {1} caracteres.";
         public const string MaxLength = "El campo '{0}' no puede superar los {1} caracteres.";
         public const string RangeError = "El campo '{0}' debe estar entre {1} y {2}.";
-        public const string PasswordTooWeak = "La contraseña no cumple con los requisitos de seguridad.";
+        public const string PasswordTooWeak = "La clave no cumple con los requisitos de seguridad.";
 
         // ======================
         // Seguridad / Autenticación
         // ======================
         public const string Unauthorized = "No tiene autorización para realizar esta acción.";
         public const string Forbidden = "Acceso denegado.";
-        public const string InvalidCredentials = "Usuario o contraseña incorrectos.";
+        public const string InvalidCredentials = "Usuario o clave incorrectos.";
         public const string AccountLocked = "La cuenta ha sido bloqueada temporalmente.";
         public const string AccountInactive = "La cuenta no está activa.";
         public const string SessionExpired = "La sesión ha expirado, por favor inicie sesión nuevamente.";
@@ -77,7 +77,7 @@
         // ======================
         public const string UserAlreadyExistsById = "Ya existe un usuario con la identificación ingresada.";
         public const string UserAlreadyExistsByEmail = "Ya existe un usuario con el correo ingresado.";
-        public const string PasswordsDoNotMatch = "Las contraseñas no coinciden.";
+        public const string PasswordsDoNotMatch = "Las claves no coinciden.";
         public const string UserNotFound = "El usuario ingresado no existe.";
     }
 }
