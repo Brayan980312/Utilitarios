@@ -47,19 +47,20 @@
         /// <inheritdoc />
         public async Task<T?> ConsultarUnoAsync(Expression<Func<T, bool>> filtro)
         {
-            return await _entidad.FirstOrDefaultAsync(filtro);
+            return await _entidad.AsNoTracking().FirstOrDefaultAsync(filtro);
         }
 
         /// <inheritdoc />
         public async Task<IEnumerable<T>> ConsultarTodosAsync()
         {
-            return await _entidad.ToListAsync();
+            return await _entidad.AsNoTracking().ToListAsync();
+
         }
 
         /// <inheritdoc />
         public async Task<IEnumerable<T>> ConsultarListaAsync(Expression<Func<T, bool>> filtro)
         {
-            return await _entidad.Where(filtro).ToListAsync();
+            return await _entidad.AsNoTracking().Where(filtro).ToListAsync();
         }
 
         /// <inheritdoc />
