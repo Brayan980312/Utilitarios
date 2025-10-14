@@ -29,7 +29,7 @@
                 // Obtenemos el valor actual de la propiedad
                 var value = prop.GetValue(parametros);
 
-                // Si el valor es nulo, se omite
+                // Si el valor es nulo o vacio, se omite
                 if (value == null) continue;
 
                 // Accedemos a la propiedad correspondiente en la entidad T

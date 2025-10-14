@@ -8,6 +8,6 @@
         /// <summary>Crea una nueva entidad en el sistema.</summary>
         /// <param name="entity">Datos de entrada necesarios para crear la entidad.</param>
         /// <returns>Entidad o DTO resultante después de la creación.</returns>
-        Task<TOut> CreateAsync(TIn entity);
+        Task<TOut> CreateAsync(TIn entity, int? userId = null);
     }
 }

@@ -26,12 +26,12 @@
         public const string InvalidPhone = "El número de teléfono no es válido.";
         public const string InvalidNumber = "El valor debe ser numérico.";
         public const string InvalidNumberWithName = "El campo '{0}' debe ser numérico.";
-        public const string InvalidNumberMin = "El campo '{0}' debe ser mayor a '{1}'";
-        public const string InvalidNumberMax = "El campo '{0}' debe ser menos a '{1}'";
+        public const string InvalidNumberMin = "{0} debe ser mayor a {1}";
+        public const string InvalidNumberMax = "campo '{0}' debe ser menor a {1}";
         public const string InvalidDate = "La fecha no es válida.";
         public const string MinLength = "El campo '{0}' debe tener al menos {1} caracteres.";
         public const string MaxLength = "El campo '{0}' no puede superar los {1} caracteres.";
-        public const string RangeError = "El campo '{0}' debe estar entre {1} y {2}.";
+        public const string RangeError = "{0} debe estar entre {1} y {2}.";
         public const string PasswordTooWeak = "La clave no cumple con los requisitos de seguridad.";
 
         // ======================
@@ -82,7 +82,12 @@
         public const string UserAlreadyExistsByEmail = "Ya existe un usuario con el correo ingresado.";
         public const string PasswordsDoNotMatch = "Las claves no coinciden.";
         public const string UserNotFound = "El usuario ingresado no existe.";
-        public const string DataNotFound = "'{0}' no existe en el sistema.";
+        public const string DataNotFound = "{0} no existe en el sistema.";
+        public const string AlreadyExistsData = "Ya existe {0} en el sistema.";
+        public const string NotActiveData = "{0} no se encuentra activo(a) en el sistema.";
+
+
+        
 
     }
 }   
