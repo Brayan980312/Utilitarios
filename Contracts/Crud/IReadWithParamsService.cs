@@ -8,6 +8,6 @@
         /// <summary>Consulta la entidad bajo parametros de busqueda.</summary>
         /// <param name="entity">Datos de entrada necesarios para consultar la entidad.</param>
         /// <returns>Lista de datos encontrados.</returns>
-        Task<IEnumerable<TOut>> GetWithParamsAsync(TIn entity);
+        Task<TOut> GetWithParamsAsync(TIn entity, int? userId = null);
     }
 }
