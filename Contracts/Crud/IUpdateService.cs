@@ -8,6 +8,6 @@
         /// <summary>Actualiza una entidad existente en el sistema.</summary>
         /// <param name="entity">Datos de entrada necesarios para actualizar la entidad.</param>
         /// <returns>Entidad o DTO resultante después de la actualización.</returns>
-        Task<TOut> UpdateAsync(TIn entity);
+        Task<TOut> UpdateAsync(TIn entity, int? userId = null);
     }
 }
