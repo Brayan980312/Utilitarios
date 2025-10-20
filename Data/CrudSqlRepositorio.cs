@@ -4,6 +4,7 @@
     using Microsoft.EntityFrameworkCore.ChangeTracking;
     using System.Data;
     using System.Linq.Expressions;
+    using System.Text.Json;
     using Utilitarios.Contracts;
     using Utilitarios.Entities;
 
@@ -76,51 +77,86 @@
         }
 
         /// <inheritdoc />
-        public async Task<IEnumerable<TResult>> ConsultarStoreProcedureAsync<TResult>(
-            string procedure, IDictionary<string, object> parametros)
+        public async Task<IEnumerable<T>> ConsultarStoreProcedureAsync<T>(
+            string procedure, object[] variables, object[] parameters)
         {
-            var lista = new List<TResult>();
+            var dataSetResultado = new DataSet();
+            List<T> lista = new();
 
-            using var cnn = _contexto.Database.GetDbConnection();
-            using var cmd = cnn.CreateCommand();
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = procedure;
-
-            if (parametros != null)
+            var connection = _contexto.Database.GetDbConnection();
+            try
             {
-                foreach (var kvp in parametros)
+                await _contexto.Database.OpenConnectionAsync();
+
+                using (var command = connection.CreateCommand())
                 {
-                    var p = cmd.CreateParameter();
-                    p.ParameterName = kvp.Key;
-                    p.Value = kvp.Value ?? DBNull.Value;
-                    cmd.Parameters.Add(p);
-                }
-            }
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = procedure;
 
-            await cnn.OpenAsync();
-
-            using var reader = await cmd.ExecuteReaderAsync();
-            var dt = new DataTable();
-            dt.Load(reader);
-
-            var propiedades = typeof(TResult).GetProperties();
-            var columnas = dt.Columns.Cast<DataColumn>().Select(c => c.ColumnName).ToList();
-
-            lista.AddRange(
-                dt.AsEnumerable().Select(row =>
-                {
-                    var obj = Activator.CreateInstance<TResult>();
-                    foreach (var prop in propiedades)
+                    if (variables != null)
                     {
-                        if (columnas.Contains(prop.Name))
+                        for (int i = 0; i < variables.Length; i++)
                         {
-                            var valor = row[prop.Name];
-                            prop.SetValue(obj, valor == DBNull.Value ? null : valor);
+                            var p = command.CreateParameter();
+                            p.ParameterName = variables[i].ToString();
+                            p.Value = parameters[i] ?? DBNull.Value;
+                            command.Parameters.Add(p);
                         }
                     }
-                    return obj;
-                })
-            );
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        do
+                        {
+                            var table = new DataTable();
+                            table.Load(reader);
+                            dataSetResultado.Tables.Add(table);
+                        } while (!reader.IsClosed);
+                    }
+                }
+            }
+            finally
+            {
+                _contexto.Database.CloseConnection();
+            }
+
+            foreach (DataTable dt in dataSetResultado.Tables)
+            {
+                var columnNames = dt.Columns.Cast<DataColumn>().Select(c => c.ColumnName).ToList();
+                var properties = typeof(T).GetProperties();
+
+                var resultado = dt.AsEnumerable().Select(row =>
+                {
+                    var objT = Activator.CreateInstance<T>();
+
+                    foreach (var prop in properties)
+                    {
+                        if (columnNames.Contains(prop.Name))
+                        {
+                            object value = row[prop.Name];
+                            if (value == DBNull.Value) continue;
+
+                            // Si la propiedad es una lista y el valor es string JSON
+                            if (prop.PropertyType.IsGenericType &&
+                                prop.PropertyType.GetGenericTypeDefinition() == typeof(List<>) &&
+                                value is string jsonString)
+                            {
+                                var itemType = prop.PropertyType.GetGenericArguments()[0];
+                                var listValue = JsonSerializer.Deserialize(jsonString, typeof(List<>).MakeGenericType(itemType));
+                                prop.SetValue(objT, listValue);
+                            }
+                            else
+                            {
+                                prop.SetValue(objT, value);
+                            }
+                        }
+                    }
+
+                    return objT;
+                }).ToList();
+
+                lista.AddRange(resultado);
+            }
 
             return lista;
         }

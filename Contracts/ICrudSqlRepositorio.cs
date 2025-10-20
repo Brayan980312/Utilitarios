@@ -37,12 +37,12 @@ namespace Utilitarios.Contracts
         /// <returns>Lista de entidades encontradas.</returns>
         Task<IEnumerable<T>> ConsultarListaAsync(Expression<Func<T, bool>> filtro);
 
-        /// <summary>Ejecuta un procedimiento almacenado con múltiples parámetros y retorna resultados tipados.</summary>
-        /// <typeparam name="TResult">Tipo de entidad de resultado esperado.</typeparam>
-        /// <param name="procedure">Nombre del procedimiento almacenado.</param>
-        /// <param name="parametros">Diccionario con nombre y valor de parámetros.</param>
-        /// <returns>Lista de resultados según el tipo indicado.</returns>
-        Task<IEnumerable<TResult>> ConsultarStoreProcedureAsync<TResult>(string procedure, IDictionary<string, object> parametros);
+        /// <summary>Metodo para consultar procedimiento almacenado multiparametro enviando un tipo T entidad de resultado.</summary>
+        /// <param name="procedure">Nombre del procedimiento.</param>
+        /// <param name="variables">Nombre parametro.</param>
+        /// <param name="parameters">Valor parametro.</param>
+        /// <returns>Lista de registro segun entidad T transferida.</returns>
+        Task<IEnumerable<T>> ConsultarStoreProcedureAsync<T>(string procedure, object[] variables, object[] parameters);
 
         /// <summary>Verifica de manera asíncrona si existe al menos un registro en la entidad que cumpla con la condición especificada en el filtro.</summary>
         /// <param name="filtro">Expresión lambda que define la condición a evaluar sobre la entidad.</param>
